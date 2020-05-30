@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import './App.css';
+import classes from './App.module.css';
 import Person from './Person/Person';
-import styled from 'styled-components';
 
 // function App() {
 //   return (
@@ -24,18 +23,18 @@ import styled from 'styled-components';
 //   );
 // }
 
-const StyledButton = styled.button`
-  background-color: ${props=> props.alt ? 'red' : 'green'};
-  color: white;
-  font:inherit;
-  border: 1px solid blue;
-  padding:8px;
-  cursor: pointer;
-  &:hover {
-    background-color: ${props=> props.alt ? 'salmon' : 'lightgreen'};
-    color: black
-  }
-`;
+// const StyledButton = styled.button`
+//   background-color: ${props=> props.alt ? 'red' : 'green'};
+//   color: white;
+//   font:inherit;
+//   border: 1px solid blue;
+//   padding:8px;
+//   cursor: pointer;
+//   &:hover {
+//     background-color: ${props=> props.alt ? 'salmon' : 'lightgreen'};
+//     color: black
+//   }
+// `;
 class App extends Component {
   state = {
     persons:[
@@ -89,19 +88,8 @@ class App extends Component {
   }
   
   render(){
-    const style={
-      backgroundColor:'green',
-      color: 'white',
-      font:'inherit',
-      border:'1px solid blue',
-      padding:'8px',
-      cursor:'pointer',
-      ':hover':{
-        backgroundColor:'lightgreen',
-        color: 'black'
-      }
-    }
 
+    let btnClass = [classes.Button]
     let persons = null;
     if (this.state.showPerson){
       persons = (
@@ -118,32 +106,28 @@ class App extends Component {
           
         </div>
       )
-      style.backgroundColor= 'red';
-      style[':hover'] = {
-        backgroundColor:'salmon',
-        color: 'black'
-      };
+      btnClass = classes.Red;
     }
 
-    const classes = [];
+    const assingedClasses = [];
     if (this.state.persons.length <= 2){
-      classes.push('red')
+      assingedClasses.push(classes.red)
     }
     if (this.state.persons.length <= 1){
-      classes.push('bold')
+      assingedClasses.push(classes.bold)
     }
     
 
     return(
-      <div className="App"> 
+      <div className={classes.App}> 
         <h1>
           Hi am a react app
         </h1>
-        <p className={classes.join(' ')}>this is working </p>
-        <StyledButton 
-        alt= {this.state.showPerson} //for change style dynamicly
+        <p className={assingedClasses.join(' ')}>this is working </p>
+        <button 
+        className={btnClass}
         onClick={this.togglePersonHandler}>tonggle person
-        </StyledButton>
+        </button>
         {persons}
         </div>
       
