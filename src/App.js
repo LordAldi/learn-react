@@ -25,14 +25,14 @@ import styled from 'styled-components';
 // }
 
 const StyledButton = styled.button`
-  background-color:green;
+  background-color: ${props=> props.alt ? 'red' : 'green'};
   color: white;
   font:inherit;
   border: 1px solid blue;
   padding:8px;
   cursor: pointer;
   &:hover {
-    background-color: lightgreen;
+    background-color: ${props=> props.alt ? 'salmon' : 'lightgreen'};
     color: black
   }
 `;
@@ -141,6 +141,7 @@ class App extends Component {
         </h1>
         <p className={classes.join(' ')}>this is working </p>
         <StyledButton 
+        alt= {this.state.showPerson} //for change style dynamicly
         onClick={this.togglePersonHandler}>tonggle person
         </StyledButton>
         {persons}
