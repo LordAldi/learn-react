@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import './App.css';
 import Person from './Person/Person';
+import styled from 'styled-components';
+
 // function App() {
 //   return (
 //     <div className="App">
@@ -22,6 +24,18 @@ import Person from './Person/Person';
 //   );
 // }
 
+const StyledButton = styled.button`
+  background-color:green;
+  color: white;
+  font:inherit;
+  border: 1px solid blue;
+  padding:8px;
+  cursor: pointer;
+  &:hover {
+    background-color: lightgreen;
+    color: black
+  }
+`;
 class App extends Component {
   state = {
     persons:[
@@ -126,10 +140,9 @@ class App extends Component {
           Hi am a react app
         </h1>
         <p className={classes.join(' ')}>this is working </p>
-        <button 
-        style={style} 
+        <StyledButton 
         onClick={this.togglePersonHandler}>tonggle person
-        </button>
+        </StyledButton>
         {persons}
         </div>
       
